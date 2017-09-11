@@ -7,7 +7,8 @@ class simpleRSA {
     unsigned long encode(char c);
     char decode (unsigned long c);
   private:
-    unsigned long p, q, d, e, n, t;
+    const unsigned long p, q;
+    unsigned long d, e, n, t;
   protected:
 };
 
