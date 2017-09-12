@@ -9,8 +9,13 @@ CFLAGS = -Wall -g
 TARGET = main
 
 # deps - dependencies to create the output file
-DEPS = $(TARGET).c
+DEPS = main.cpp
 
 # make all: compile and link source code to an execcutable
 all: $(TARGET)
-  %(CC) $(CFLAGS) -o $(TARGET) 
+	$(CC) $(CFLAGS) -o $(TARGET) $(DEPS)
+
+.PHONY: clean
+
+clean:
+	rm $(TARGET)
