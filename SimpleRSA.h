@@ -10,6 +10,7 @@ class simpleRSA {
     const unsigned long p, q;
     unsigned long d, e, n, t;
   protected:
+    unsigned long modExp (unsigned long base, unsigned long exp, unsigned long mod);
 };
 
 #endif
