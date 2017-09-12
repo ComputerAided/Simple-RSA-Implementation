@@ -16,15 +16,19 @@ TARGET = $(lastword $(subst /, ,$(CURDIR)))
 
 # sources - dependencies to create the output file
 SOURCES = $(wildcard *.c *.cpp $(LIBDIR)/*.c $(LIBDIR)/*.cpp)
+HEADERS = $(SOURCES:.c=.h)
+HEADERS += $(SOURCES:.cpp=.h)
+OBJECTS = $(SOURCES:.c=.o)
+OBJECTS += $(SOURCES:.cpp=.o)
 
 # make all: compile and link source code to an execcutable
-%.o: %.c $(HEADERS) Makefile
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c -o $@ $<;
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-all: $(TARGET)
-	$(CC) $(CFLAGS) -o $(TARGET) $(DEPS)
+all: $(OBJECTS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $<
 
 .PHONY: clean
 
 clean:
-	rm $(TARGET)
+	rm -f $(TARGET) $(OBJECTS)
