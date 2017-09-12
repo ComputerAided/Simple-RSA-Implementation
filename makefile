@@ -9,7 +9,7 @@ CFLAGS = -Wall -g
 TARGET = main
 
 # deps - dependencies to create the output file
-DEPS = main.cpp
+DEPS = SimpleRSA.h main.cpp SimpleRSA.cpp
 
 # make all: compile and link source code to an execcutable
 all: $(TARGET)
