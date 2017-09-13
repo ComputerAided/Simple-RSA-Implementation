@@ -5,11 +5,13 @@ simpleRSA::simpleRSA(unsigned long p1, unsigned long q1, unsigned long e1) : p(p
 }
 
 unsigned long simpleRSA::encode (char c) {
-  return 0;
+  unsigned long E = modExp(c, e, n);
+  return E;
 }
 
 char simpleRSA::decode (unsigned long c) {
-  return 0;
+  unsigned long C = modexp(c, d, n);
+  return C;
 }
 
 unsigned long simpleRSA::modExp (unsigned long base, unsigned long pow, unsigned long mod) {
