@@ -15,18 +15,17 @@ CPPFLAGS =
 TARGET = $(lastword $(subst /, ,$(CURDIR)))
 
 # sources - dependencies to create the output file
-SOURCES = $(wildcard *.c *.cpp $(LIBDIR)/*.c $(LIBDIR)/*.cpp)
-HEADERS = $(SOURCES:.c=.h)
-HEADERS += $(SOURCES:.cpp=.h)
-OBJECTS = $(SOURCES:.c=.o)
-OBJECTS += $(SOURCES:.cpp=.o)
+SOURCES = $(wildcard *.cpp $(LIBDIR)/*.cpp)
+#HEADERS = $(SOURCES:.cpp=.h)
+OBJECTS = $(SOURCES:.cpp=.o)
 
 # make all: compile and link source code to an execcutable
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+%.o: %.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 all: $(OBJECTS)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $<
+	echo "Sources are $(SOURCES); objects are $(OBJECTS)"
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $^
 
 .PHONY: clean
 
