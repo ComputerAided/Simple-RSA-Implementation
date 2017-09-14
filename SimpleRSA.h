@@ -8,8 +8,8 @@ class simpleRSA {
     char decode (unsigned long c);
     unsigned long modExp (unsigned long base, unsigned long exp, unsigned long mod);
   private:
-    const unsigned long p, q, n;
-    unsigned long d, e, t;
+    const unsigned long p, q, n t;
+    unsigned long d, e;
   protected:
 
 };
