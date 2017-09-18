@@ -1,21 +1,22 @@
 #include "SimpleRSA.h"
+
 #include <iostream>
 
 simpleRSA::simpleRSA(unsigned long p1, unsigned long q1, unsigned long e1) : p(p1), q(q1), e(e1), n(p*q), t((p-1)*(q-1)) {
-  //std::cout << "p, q: " << p << ", " << q << "\r\n" << "t, n, e:" << t << ", " << n << ", " << e <<std::endl;
   d = modInverse(e, t);
 }
 
 unsigned long simpleRSA::encode (char c) {
-  unsigned long E = modExp(c, e, n);
+  unsigned long E = modExp(c, e, n); // encode data by taking c^e mod n
   return E;
 }
 
 char simpleRSA::decode (unsigned long c) {
-  unsigned long C = modExp(c, d, n);
+  unsigned long C = modExp(c, d, n); //decode data with c^d mod n
   return C;
 }
 
+// Funtion that accomplishes modular exponentiation
 unsigned long simpleRSA::modExp (unsigned long base, unsigned long pow, unsigned long mod) {
   unsigned long remainder;
   unsigned long x = 1;
@@ -32,6 +33,7 @@ unsigned long simpleRSA::modExp (unsigned long base, unsigned long pow, unsigned
   return x;
 }
 
+// function to find modular inverse of x mod n
 unsigned long simpleRSA::modInverse(int a, int m)
 {
     unsigned long m0 = m, t, q;
